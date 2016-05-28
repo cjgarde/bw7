@@ -1,0 +1,75 @@
+
+.cgBody {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #707478;
+}
+
+.cgBody h1,
+.cgBody h2,
+.cgBody h3,
+.cgBody h4,
+.cgBody h5,
+.cgBody h6 {
+  font-weight: 500;
+  color: white;
+}
+
+.cgBody h1 small,
+.cgBody h2 small,
+.cgBody h3 small,
+.cgBody h4 small,
+.cgBody h5 small,
+.cgBody h6 small {
+  font-size: 60%;
+  font-weight: 300;
+  color: #7c7f83;
+}
+
+.cgBody input{
+  line-height: 40px;
+}
+
+.cgBody .sweet-alert h1,
+.cgBody .sweet-alert h2,
+.cgBody .sweet-alert h3,
+.cgBody .sweet-alert h4,
+.cgBody .sweet-alert h5,
+.cgBody .sweet-alert h6 {
+  color: black;
+}
+
+.cgBody #main {
+  position: absolute;
+  top: 20%;
+  left: 6%;
+}
+
+.cgBody .cover-image img{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.cgBody #main #randomArraySection {
+  color: grey;
+}
+
+.cgBody #main #manualArraySection {
+  margin-top:10%;
+}
+
+.cgBody #main #textEnterNumElementArray {
+  height: 400px;
+  width: 600px;
+}
+
+.cgBody #main #textElementArray{
+  margin-right: 1%;
+}
+
+.sweet-alert p {
+  word-break: break-word;
+}
