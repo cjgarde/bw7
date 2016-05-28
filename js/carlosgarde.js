@@ -123,7 +123,7 @@
 	    }
 
 
-	    function _iniTest() {
+	    function _init() {
 	    	//load Button Handlers in orders to handle the click events
 	    	_addRandomArrayButtonListener();
 	    	_addManualArrayButtonListener();
@@ -162,12 +162,12 @@
 
 	    return {
 	    	//expose visible or public methods
-	    	iniTest: _iniTest
+	    	init: _init,
 	    }
 	})(window);
 
 
 	//Begin of the test, only this first step is visible
-	bw7.iniTest();
+	bw7.init();
 
 }());
