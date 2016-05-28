@@ -72,40 +72,61 @@
    
 
 	    function _calculateSum (aGivenArray){
-		    var result = null;
+		    var result = 0;
 		    var aGivenArrayCopy = aGivenArray.slice(0);
 
 		    //if we have a valid arra and has more than one element
 		    if (aGivenArrayCopy && (aGivenArrayCopy.length > 1)) {
 		            var nLength = aGivenArrayCopy.length;
+		           	var left = 0;
+		            var right = 0;
 
 		            // sort array
 		            aGivenArrayCopy = aGivenArrayCopy.sort(function (a, b) {
 		              return a < b ? -1 : 1;
 		            });
 
-		            // if second element is zero, means that first is negativ
-		            // in this case we will pair them in order to obtain zero and no a negative
-		            // value (because in this case we won't obtain the max sum)
-		            var first = aGivenArrayCopy[0];
-		            var second = aGivenArrayCopy[1];
-		            //if ((first === 0 || second === 0) && ( first < 0 || second < 0)) {
-		            result = second === 0 ? (first * second) : (first + second);
+		            // iterate over sorted array
+		            for (var i = nLength-1; i>0; i--) {
+		            	left = aGivenArrayCopy[i-1];
+		            	right = aGivenArrayCopy[i];
 
-		            // loop over the sorted array
-		            // if we find a zero beyond the third position, we won't pair it
-		            // because we will pair with a positive number
-		            // at every loop we will decrease two times the index (one at the end of the for)
-		            // to pair from the biggest til the lowest (if we should pair them)
-		            for (var i = nLength-1; i>1; i--) {
-		                if ((i > 2) && (aGivenArrayCopy[i] !== 0 && aGivenArrayCopy[i-1] !== 0)) {
-		                    result = result + (aGivenArrayCopy[i] * aGivenArrayCopy[i-1]);                    
-		                }
-		                else {
-		                    result = result + aGivenArrayCopy[i]
-		                }
-		                i--;
-		            }
+		            	if (right === 0 && i%2 !== 0) {
+		            		// if current number is zero, its left elements are negative.
+		            		// Multiplying two negatives numbers is a positive one.
+		            		// So we only multiply zero by his closest negative number (in the left)
+		            		// if there is a odd number of negative element
+		            		// i.e: we enter here with the array -3,-2,-1,0
+		            		// in this example we want (-3*-2) + (0*-1) = 6
+		            		result = result + (right * left); 
+		                	i--;
+		            	}
+		            	else {
+		            		if (left === 0 && right > 0){
+		            			// if current element is positive and closest in the left is zero
+		            			// we will not pair them and will add to the result the current number
+		            			result = result + right;
+		            		}
+		            		else {
+		            			// finally we have the elements that will pair
+		            			// this last case is if both are positive or negative (to obtain a positive multiplication)
+		            			if ( (right > 0 && left >0) || (right <0 && left <0) )
+		            			{
+		            				// here, the only special case if both are 1
+		            				// so we don't pair them, we will sum	
+		            				if ((right === 1) && (left === 1) ) {
+		            					result = result + right + left;
+		            				}
+		            				else {
+		            					result = result + (right * left);
+		            				}
+		            				i--;
+		            			}
+		            		}
+		            	}
+		            	// check if there is an orphan, to sum it to the result
+		            	result = i === 1 ? result + aGivenArrayCopy[0] : result;
+		            } // end for
 		        }
 		    else {
 		        // if the array is not valid return a string 
