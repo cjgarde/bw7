@@ -91,18 +91,25 @@
 		            	left = aGivenArrayCopy[i-1];
 		            	right = aGivenArrayCopy[i];
 
-		            	if (right === 0 && i%2 !== 0) {
-		            		// if current number is zero, its left elements are negative.
+		            	if (right <= 0 ) {
+		            		// if current number is zero o less, its left elements are negative.
 		            		// Multiplying two negatives numbers is a positive one.
-		            		// So we only multiply zero by his closest negative number (in the left)
-		            		// if there is a odd number of negative element
+		            		// if there is a odd position with a zero or negative number, we will summ the current one
+		            		// if we are in an even position with negative or zero number, we will multiply by its closest
 		            		// i.e: we enter here with the array -3,-2,-1,0
 		            		// in this example we want (-3*-2) + (0*-1) = 6
-		            		result = result + (right * left); 
-		                	i--;
+		            		// i.e. 2: (-5,-4,-3) = (-5*-4) * (-3) = 17
+		            		if(i%2 !== 0) { //odd position
+		            			result = result + (right * left); 
+		            			i--;
+		            		}
+		            		else{ //even position
+		            			result = result + right
+		            		}		            		
+		                	
 		            	}
 		            	else {
-		            		if (left === 0 && right > 0){
+		            		if (left <= 0 && right > 0){
 		            			// if current element is positive and closest in the left is zero
 		            			// we will not pair them and will add to the result the current number
 		            			result = result + right;
