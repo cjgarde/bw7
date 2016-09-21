@@ -1,4 +1,4 @@
-# BW7 First technical test
+# Calculating sum in arrays
 
 To run, open in a browser the **index.html** file.
 
